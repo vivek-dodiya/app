@@ -35,7 +35,12 @@ export default {
     },
     methods: {
         login() {
+            if(this.form.email === '' && this.form.password === '' ){
+                alert("all field are mendetory ");
+                return
+            }
             if (this.Login) {
+                console.log(this.form.email, this.form.password)
                 this.router.push('/dashboard');
             }
         }
