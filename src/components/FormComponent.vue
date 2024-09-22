@@ -10,32 +10,34 @@
     <label for="">Password </label>
     <input type="password" placeholder="Enter Password" v-model="form.password">
     <br>
-    <button type="button" v-on:click="Login()">
+    <button type="button" v-on:click="login()">
         Login
     </button>
 </form>
 </template>
 
-<script>
+<script> 
+import{useDataStore} from '../stores/userData'
+import { storeToRefs } from 'pinia';
+import { useRouter } from 'vue-router';
 export default {
     name: 'FormComponent',
-    data() {
+    setup(){
+        const dataStore = useDataStore()
+        const {form , error } = storeToRefs(dataStore)
+        const router = useRouter()
         return {
-            form: {
-                email: '',
-                password: '',
-            },
-            error: []
+            form,
+            error,
+            Login : dataStore.login,
+            router
         }
     },
     methods: {
-        Login() {
-            for (let item in this.form) {
-                if (this.form[item] == '') {
-                    return alert("all fild mendetory")
-                }
+        login() {
+            if (this.Login) {
+                this.router.push('/dashboard');
             }
-            this.$router.push('/dashboard');
         }
     }
 }

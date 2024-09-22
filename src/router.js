@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import FormComponent from './components/FormComponent.vue';
-import DeshBoard  from './components/DeshBoard.vue';
+import DashBoard  from './components/DeshBoard.vue';
 const routes = [
     {
         path: '/',
@@ -9,8 +9,9 @@ const routes = [
     },
     {
         path: '/dashboard',
-        name: 'DeshBord',
-        component: DeshBoard
+        name: 'DashBoard',
+        component: DashBoard,
+        props : true
     }
 ]
 
